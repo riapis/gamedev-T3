@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://dc8aaxini1k8s"]
+
+[ext_resource type="Texture2D" uid="uid://ckavd12djpprg" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_duck.png" id="1_6huie"]
+[ext_resource type="Texture2D" uid="uid://efim7fkmj37k" path="res://assets/kenney_platformercharacters/Vector/female_vector.svg" id="1_row01"]
+[ext_resource type="Texture2D" uid="uid://b6rhu5v68m0dn" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_skid_flip.png" id="1_vy4oi"]
+[ext_resource type="Texture2D" uid="uid://cpp16i6ubi2qc" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_fall.png" id="1_yt6q5"]
+[ext_resource type="Shape2D" uid="uid://c5mrm4fth8ojv" path="res://resources/stand_cshape.tres" id="5_es4d3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxlbb"]
+atlas = ExtResource("1_row01")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v1e4"]
+atlas = ExtResource("1_row01")
+region = Rect2(400, 220, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epe7v"]
+atlas = ExtResource("1_row01")
+region = Rect2(160, 110, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbxkh"]
+atlas = ExtResource("1_row01")
+region = Rect2(160, 220, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cip6i"]
+atlas = ExtResource("1_row01")
+region = Rect2(0, 110, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2m1sj"]
+atlas = ExtResource("1_row01")
+region = Rect2(80, 110, 80, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52ffg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6huie")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vy4oi")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yt6q5")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxlbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v1e4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epe7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbxkh")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cip6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2m1sj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[node name="Character" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_52ffg")
+animation = &"crouch"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = ExtResource("5_es4d3")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
