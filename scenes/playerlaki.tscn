@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhpmstx5gayo"]
+
+[ext_resource type="Script" path="res://script/playerlaki.gd" id="1_pi6qf"]
+[ext_resource type="Texture2D" uid="uid://c5owqib4vhcns" path="res://assets/player_tilesheet.png" id="1_sjjs5"]
+[ext_resource type="AudioStream" uid="uid://bgc5j7ucaqi01" path="res://assets/Sound effect Uh 4.mp3" id="3_2ba0n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4env8"]
+atlas = ExtResource("1_sjjs5")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8fu6"]
+atlas = ExtResource("1_sjjs5")
+region = Rect2(0, 110, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e75fb"]
+atlas = ExtResource("1_sjjs5")
+region = Rect2(80, 110, 80, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1h4uh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4env8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8fu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e75fb")
+}],
+"loop": true,
+"name": &"walk right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h45eh"]
+radius = 26.0
+height = 88.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lpwvj"]
+radius = 37.0
+
+[node name="playerlaki" type="CharacterBody2D"]
+script = ExtResource("1_pi6qf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1h4uh")
+animation = &"walk right"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 11)
+shape = SubResource("CapsuleShape2D_h45eh")
+
+[node name="hit_box" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_box"]
+position = Vector2(0, 11)
+shape = SubResource("CircleShape2D_lpwvj")
+
+[node name="cooldown" type="Timer" parent="."]
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2ba0n")
+volume_db = 5.0
+
+[connection signal="body_entered" from="hit_box" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="hit_box" to="." method="_on_hit_box_body_exited"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]

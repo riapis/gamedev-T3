@@ -1,5 +1,24 @@
 ### Fari Hafizh R - 2206083691
 
+# Tutorial 5
+## Objek baru
+Saya menambahkan objek baru berupa zombie yang memiliki animasi idle,
+sumber asset: https://www.gameart2d.com/the-zombies-free-sprites.html
+
+## SFX
+SFX yang saya tambahakn adalah sfx suara zombie yang ketika jarak player dengan zombie sekitar 500 px, maka suara tersebut akan terdengar
+
+## BGM
+Saya menambahkan bgm yang di download dari https://pixabay.com/music/main-title-silver-wind-309403/
+
+## Interaksi
+Interaksi antara player dengan zombie adalah ketika player mengenai zombie maka akan print health -10
+
+## Audio feedback
+Saat player mengenai zombie, sfx uhh.. akan dimainkan untuk menandakan player telah terkena zombie
+
+
+# Tutorial 3
 ## Double Jumping
 
 1. untuk memastikan player hanya dapat melompat sebanyak 2 kali, buat jump counter
